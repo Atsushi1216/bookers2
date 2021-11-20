@@ -1,0 +1,25 @@
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>User info</h2>
+<%= form_with model:@user, local:true do |f| %>
+ <div>
+  <label for="inputName">Name</label></div>
+  <div>
+  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"name"%></div>
+  <div>
+   <label for="inputName">Introduction</label></div>
+  <div>
+  <%= f.text_field :introduction, autofocus: true, maxlength: "50", id:"inputName", placeholder:""%></div>
+  <div>
+  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: '/assets/images/no_image.jpg'%></div>
+  <div>
+  <label for="inputImage">ProfileImage</label></div>
+  <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+  <div>
+  < <%= f.submit "Update User", class: "btn btn-success" %></div>
+<% end %>
+    </div>
+  </div>
+</div>
