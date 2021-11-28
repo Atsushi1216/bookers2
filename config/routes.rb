@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get "/home/about" =>"homes#about"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :books, only: [:create, :index, :show, :destroy, :edit, :update]
-    resources :users, only: [:show, :edit, :update, :index]
+  resources :books, only: [:create, :index, :show, :destroy, :edit, :update] do
+   resource :favorites, only: [:create, :destroy]
+   resources :post_comments, only: [:create, :destroy]
+  end
+
+  resources :users, only: [:show, :edit, :update, :index]
 end

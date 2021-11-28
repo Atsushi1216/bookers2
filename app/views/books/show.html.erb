@@ -31,6 +31,35 @@
         <% end %>
       </tbody>
     </table>
+    <tr>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <p>コメント件数：<%= @book.post_comments.count %></p>
+          </div>
+            <div class ="col-md-8">
+              <td><% @book.post_comments.each do |post_comment| %></td>
+                <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td><br>
+                <td>  投稿者：@<%= post_comment.user.name %> さん  </td><br>
+                <td>コメント：  <%= post_comment.comment %>  </td>
+                <% if post_comment.user == current_user %>
+                <td>
+                <%= link_to "削除", book_post_comment_path(post_comment.book, post_comment), method: :delete %>
+                </td><br>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+      </div>
+    </tr>
+    <div>
+      <p><strong>コメント投稿</strong></p>
+      <%= form_with(model:[@book, @post_comment], local: true) do |f| %>
+      <%= f.text_area :comment, size: "90x3", placeholder: "コメントをここに" %><br>
+      <%= f.submit "送信する" , class: "btn btn-primary" %>
+      <% end %>
+    </div>
+
 </div>
       </div>
     </div>
