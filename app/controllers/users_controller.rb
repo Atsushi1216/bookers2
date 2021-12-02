@@ -27,6 +27,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    @model = params["model"]
+    @content = params["content"]
+    @method = params["method"]
+    @records = search_url(@model, @content, @method)
+  end
+
   private
 
   def user_params
@@ -38,4 +45,5 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+
 end
