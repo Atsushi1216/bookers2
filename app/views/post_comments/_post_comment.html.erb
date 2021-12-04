@@ -1,0 +1,9 @@
+  <% book.post_comments.each do |post_comment| %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><br>
+    投稿者：@<%= post_comment.user.name %> さん <br>
+    コメント：  <%= post_comment.comment %>
+    <% if post_comment.user == current_user %>
+      <%= link_to book_post_comment_path(post_comment.book, post_comment), method: :delete ,remote: true do %>"削除"<br>
+      <% end %>
+    <% end %>
+  <% end %>

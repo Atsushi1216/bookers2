@@ -21,21 +21,15 @@
   <h2>Book detail</h2>
     <table class="table">
       <tbody>
+        <tr id="book_<%= @book.id %>">
         <td><%= attachment_image_tag @book.user, :profile_image, :fill, 40, 40, fallback: '/assets/images/no_image.jpg'%><br>
         <%= link_to @book.user.name, user_path(@book.user.id) %></td>
         <td><%= link_to @book.title, book_path(@book.id) %></td>
         <td><%= @book.body %></td>
-         <% if @book.favorited_by?(current_user) %>
-         <td><%= link_to book_favorites_path(@book), method: :delete do %>
-         ♥<%= @book.favorites.count %>
-         <% end %></td>
-         <% else %>
-         <td><%= link_to book_favorites_path(@book), method: :post do %>
-        ♡<%= @book.favorites.count %>
-        <% end %></td>
-        <% end %>
-  <td><%= link_to "#{@book.post_comments.count} コメント", book_path(@book.id) %></td>
-  </tr>
+        <td class=<%="favorite-btn-"+ (@book.id).to_s %>>
+        <%= render 'favorites/favorite-btn', book: @book %><td>
+        <td class="post_comments_counts"><%= "#{@book.post_comments.count} コメント" %></td>
+        </tr>
         <% if @book.user == current_user %>
           <td><%= link_to("Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success") %></td>
           <td><%= link_to("Destroy", book_path(@book.id), method: :delete, class: "btn btn-sm btn-danger") %></td>
@@ -45,34 +39,21 @@
     <tr>
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
-            <p>コメント件数：<%= @book.post_comments.count %></p>
+          <div class="col-md-0">
+            <div></div>
           </div>
-            <div class ="col-md-8">
-              <td><% @book.post_comments.each do |post_comment| %></td>
-                <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td><br>
-                <td>  投稿者：@<%= post_comment.user.name %> さん  </td><br>
-                <td>コメント：  <%= post_comment.comment %>  </td>
-                <% if post_comment.user == current_user %>
-                <td>
-                <%= link_to "削除", book_post_comment_path(post_comment.book, post_comment), method: :delete %>
-                </td><br>
-                <% end %>
-              <% end %>
+            <div class ="col-md-12">
+            <div class = "post_comment">
+            <%= render 'post_comments/post_comment',book: @book %></div>
             </div>
           </div>
       </div>
-    </tr>
-    <div>
-      <p><strong>コメント投稿</strong></p>
-      <%= form_with(model:[@book, @post_comment], local: true) do |f| %>
-      <%= f.text_area :comment, size: "90x3", placeholder: "コメントをここに" %><br>
-      <%= f.submit "送信する" , class: "btn btn-primary" %>
-      <% end %>
+    </tr><br>
+    <div class ="form">
+      <%= render 'post_comments/form', book: @book, post_comment: @post_comment %>
     </div>
 
 </div>
       </div>
     </div>
   </div>
-   
