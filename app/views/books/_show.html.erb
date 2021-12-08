@@ -20,6 +20,19 @@
   <%= f.text_field :title, class:"form-control" %>
   <h4>Opinion</h4>
   <%= f.text_field :body, class:"form-control" %>
+   <div id="evaluate_stars">
+    <label>評価</label>
+  </div>
   <%= f.submit "Create Book", class: "btn btn-success" %>
+
+  <!-- 評価javascript -->
+ <script>
+  $('#evaluate_stars').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    scoreName: 'book[evaluation]' //登録するモデル名とカラム名を記述
+  });
+</script>
 <% end %>
+
 </div>

@@ -22,6 +22,16 @@
         <h4>Opinion</h4>
         <%= f.text_field :body, class:"form-control" %>
         <%= f.submit "Update Book", class: "btn btn-success" %>
+        <div class="book-evaluation_<%= @book.id %>"></div>
+      <script>
+        $('.book-evaluation_<%= @book.id %>').raty({
+          size: 20,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          readOnly: true,
+          score: <%= @book.evaluation %>,
+         });
+      </script>
         <% end %>
   		  <%= link_to "Show", book_path(@book.id) %><span> |</span>
         <%= link_to "Back", "/books" %>

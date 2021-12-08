@@ -29,11 +29,22 @@
         <td class=<%="favorite-btn-"+ (@book.id).to_s %>>
         <%= render 'favorites/favorite-btn', book: @book %><td>
         <td class="post_comments_counts"><%= "#{@book.post_comments.count} コメント" %></td>
+        <td class="book-evaluation_<%= @book.id %>" data-score="<%= @book.evaluation %>"></td>
         </tr>
+        <script>
+          $('.book-evaluation_<%= @book.id %>').raty({
+            readOnly: true,
+            score: function() {
+            return $(this).attr('data-score');
+            },
+            path: '/assets/'
+          });
+        </script>
         <% if @book.user == current_user %>
           <td><%= link_to("Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success") %></td>
           <td><%= link_to("Destroy", book_path(@book.id), method: :delete, class: "btn btn-sm btn-danger") %></td>
         <% end %>
+
       </tbody>
     </table>
     <tr>
