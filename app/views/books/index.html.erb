@@ -5,9 +5,9 @@
 <% if @book.errors.any? %>
  <Strong><%= @book.errors.count %>  errors occur!  :</Strong>
  <ul>
-      <% @book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+  <% @book.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
   </ul>
 <% end %>
 </div>
