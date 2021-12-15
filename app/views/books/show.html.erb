@@ -1,5 +1,5 @@
 <div>
-<%=   flash[:notice]  %>
+<%= flash[:notice]  %>
 </div>
 <div>
 <% if @book.errors.any? %>
@@ -63,7 +63,6 @@
     <div class ="form">
       <%= render 'post_comments/form', book: @book, post_comment: @post_comment %>
     </div>
-
 </div>
       </div>
     </div>

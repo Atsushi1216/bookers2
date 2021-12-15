@@ -28,10 +28,8 @@ class BooksController < ApplicationController
     @post_comment = PostComment.new
   end
 
-
   def edit
   end
-
 
   def update
     if @book.update(book_params)
@@ -40,7 +38,6 @@ class BooksController < ApplicationController
       render action: :edit
     end
   end
-
 
   def destroy
     @book.destroy
