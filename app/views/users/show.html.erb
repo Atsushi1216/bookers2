@@ -4,10 +4,10 @@
 <div>
 <% if @user.errors.any? %>
  <Strong><%= @user.errors.count %>  errors occur!  :</Strong>
- <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
   </ul>
 <% end %>
 </div>

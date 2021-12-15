@@ -1,13 +1,13 @@
 <div>
-<%=   flash[:notice]  %>
+<%= flash[:notice]  %>
 </div>
 <div>
 <% if @book.errors.any? %>
- <Strong><%= @book.errors.count %>  errors occur!  :</Strong>
- <ul>
-      <% @book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+<Strong><%= @book.errors.count %>  errors occur!  :</Strong>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
   </ul>
 <% end %>
 </div>
@@ -15,7 +15,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-<%= render 'books/show', book_new: @book_new, user: @user %>
+      <%= render 'books/show', book_new: @book_new, user: @user %>
     </div>
   </div>
 </div>
