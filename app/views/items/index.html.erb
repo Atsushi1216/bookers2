@@ -1,1 +1,9 @@
 <h1>Itemの画面表示</h1>
+ <%= form_with model: @item, local:true do |f| %>
+    <h2 class="mt-3">New Item</h2>
+    <h4>Title</h4>
+      <%= f.text_field :title, class:"form-control" %>
+    <h4>Opinion</h4>
+      <%= f.text_field :body, class:"form-control" %>
+    <%= f.submit "Create Item", class: "btn btn-success" %>
+    <% end %>
